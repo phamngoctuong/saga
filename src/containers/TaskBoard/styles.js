@@ -1,6 +1,7 @@
 const styles  = (theme) => ({
   taskboard: {
-    display: 'flex'
+    display: 'flex',
+    
   },
   shape: {
     padding: 20,
