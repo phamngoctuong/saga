@@ -10,7 +10,7 @@ class TaskBoard extends Component {
         <Button variant="contained" color="primary">
           Hello World
         </Button>
-        <div className={classes.box}>
+        <div className={classes.taskboard}>
           <div className={classes.shape}>ReactJs</div>
           <div className={classes.shape}>Redux</div>
           <div className={classes.shape}>Angular</div>
