@@ -5,6 +5,11 @@ import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
 import { withStyles} from '@material-ui/core';
 import  {STATUSES } from '../../constants';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 const listTask = [
   {
     id: 1,
@@ -35,11 +40,30 @@ class TaskBoard extends Component {
           const taskFiltered = listTask.filter(task => task.status === status.value);
           return (
             <Grid item key={status.value} md={4}>
-              <div className={classes.status}>{classes.label}</div>
+              <Box my={2}>
+                <div className={classes.status}>{status.label}</div>
+              </Box>
               <div className={classes.wrapperListTask}>
                {
                 taskFiltered.map(task => {
-                  return <h1 key={task.id}>{task.title}</h1>
+                  const {title} = task;
+                  return (
+                    <Card key={task.id} className={classes.card}>
+                      <CardContent>
+                        <Grid container justify="space-between">
+                          <Grid item md={8}>
+                            <Typography component="h2">{title}</Typography>
+                          </Grid>
+                          <Grid item md={4}>
+                            {status.label}
+                          </Grid>
+                        </Grid>
+                      </CardContent>
+                      <CardActions>
+                        <Button size="small"></Button>
+                      </CardActions>
+                    </Card>
+                  );
                 })
                }
               </div>
