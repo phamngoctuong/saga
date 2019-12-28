@@ -1,7 +1,7 @@
-var styles = () => ({
+var styles = (theme) => ({
 	CardActions: {
-		alignItem: 'center',
-		justifyContent: "flex-end"
+		justifyContent: "flex-end",
+		borderRadius: theme.borderradius
 	}
 });
 export default styles;

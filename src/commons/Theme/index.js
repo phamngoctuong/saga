@@ -1,16 +1,10 @@
-import { createMuiTheme } from '@material-ui/core/styles';
-const theme = createMuiTheme({
-  colors: {
-    primary: '#FF5252',
-    secondary: '#0288D1',
-    error: '#FF5722'
+import { createMuiTheme} from '@material-ui/core/styles';
+var theme = createMuiTheme({
+  palette: {
+    secondary: {
+       main: '#123456'
+    }
   },
-  typoraphy: {
-    fontFamily: "Roboto"
-  },
-  shape: {
-    borderRadius: 4,
-    textColor: '#ffffff'
-  }
+  borderradius: 4
 });
 export default theme;
