@@ -9,7 +9,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Fab from '@material-ui/core/Fab'
+import Fab from '@material-ui/core/Fab';
+import { withStyles } from '@material-ui/styles';
+import styles from './styles';
 class ProductItem extends Component {
   render() {
   	var {state, status} = this.props;
@@ -40,7 +42,7 @@ class ProductItem extends Component {
 					      </Typography>
 				      </Grid>
 						</Grid>
-  					<CardActions>
+  					<CardActions className={classes.CardActions}>
 			        <Fab color="primary" aria-label="add">
 				        <CreateIcon></CreateIcon>
 				      </Fab>
@@ -54,4 +56,4 @@ class ProductItem extends Component {
     );
   }
 }
-export default ProductItem;
+export default withStyles(styles)(ProductItem);
