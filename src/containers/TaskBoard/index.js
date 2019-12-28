@@ -1,11 +1,7 @@
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import AddIcon from '@material-ui/icons/Add';
-import { withStyles } from '@material-ui/styles';
 import React, { Component } from 'react';
-import { STATUSES } from '../../constants';
-import TaskList from '../../components/TaskList';
-import styles from './styles';
+import {connect} from 'react-redux';
+import ProductList from './../../components/ProductList';
+import ProductItem from './../../components/ProductItem';
 const listTask = [
   {
     id: 1,
@@ -27,37 +23,30 @@ const listTask = [
   },
 ];
 class TaskBoard extends Component {
-  renderBoard() {
-    let xhtml = null;
-    xhtml = (
-      <Grid container spacing={2}>
-        {STATUSES.map(status => {
-          const taskFiltered = listTask.filter(
-            task => task.status === status.value,
-          );
-          return (
-            <TaskList key={status.value} tasks={taskFiltered} status={status} />
-          );
-        })}
-      </Grid>
-    );
-    return xhtml;
-  }
-  render() {
-    const { classes } = this.props;
-    return (
-      <div className={classes.taskBoard} id="1">
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          onClick={this.openForm}
-        >
-          <AddIcon /> Thêm mới công việc
-        </Button>
-        {this.renderBoard()}
-      </div>
-    );
-  }
+	renderBoard(states) {
+		let xhtml = null;
+		xhtml = (states.map((state,index)=> {
+			var taskFiltered = listTask.filter(
+        task => task.status === state.value
+      );
+			return (
+				<ProductItem key={index} state={taskFiltered[0]} index={index} status={state}></ProductItem>
+			);
+		}));
+		return xhtml;
+	}
+ render() {
+ 	var {states} = this.props;
+  return (
+  	<ProductList>
+  		{this.renderBoard(states)}
+  	</ProductList>
+  );
+ }
 }
-export default withStyles(styles)(TaskBoard);
+var mapStateToProps = (state) => {
+	return {
+		states: state.states
+	}
+}
+export default connect(mapStateToProps, null)(TaskBoard);

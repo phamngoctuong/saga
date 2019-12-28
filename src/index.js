@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './containers/App/index';
+import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
-ReactDOM.render(<App />, document.getElementById('root'));
+import myReducer from './reducers/index';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import {createStore, compose, applyMiddleware} from 'redux';
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+var store = createStore(myReducer,composeEnhancer(applyMiddleware(thunk)));
+ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById('root'));
 serviceWorker.unregister();
